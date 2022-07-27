@@ -6,9 +6,11 @@ import UpdateBook from "./UpdateBook";
 const Book = ({ book }) => {
   const dispatch = useDispatch();
   const [showUpdateForm, setShowUpdateForm] = useState(false);
-
+  const closeUpdateForm = () => {
+    setShowUpdateForm(false);
+  };
   return (
-    <div>
+    <>
       <div className="Book">
         <h3
           style={{ cursor: "pointer" }}
@@ -28,8 +30,10 @@ const Book = ({ book }) => {
         <p>{book.category}</p>
         <p>{book.description}</p>
       </div>
-      {showUpdateForm && <UpdateBook book={book} />}
-    </div>
+      {showUpdateForm && (
+        <UpdateBook book={book} closeUpdateForm={closeUpdateForm} />
+      )}
+    </>
   );
 };
 export default Book;

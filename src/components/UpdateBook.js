@@ -2,12 +2,13 @@ import React from "react";
 import { useState } from "react";
 import { updateBook } from "../features/books";
 import { useDispatch } from "react-redux";
-const UpdateBook = (book) => {
+const UpdateBook = ({ book, closeUpdateForm }) => {
   const [name, setName] = useState(book.name);
   const [price, setPrice] = useState(book.price);
   const [category, setCategory] = useState(book.category);
   const [description, setDescription] = useState(book.description);
   const dispatch = useDispatch();
+  const close = false;
   const onSubmit = (e) => {
     e.preventDefault();
     if (!name || price < 1 || !category || !description) {
@@ -23,6 +24,7 @@ const UpdateBook = (book) => {
         description,
       })
     );
+    closeUpdateForm();
   };
   return (
     <form className="add-form" onSubmit={onSubmit}>
@@ -30,7 +32,7 @@ const UpdateBook = (book) => {
         <label>Book Name</label>
         <input
           type="text"
-          placeholder={book.name}
+          defaultValue={book.name}
           onChange={(e) => {
             setName(e.target.value);
           }}
@@ -40,7 +42,7 @@ const UpdateBook = (book) => {
         <label>Price $</label>
         <input
           type="number"
-          placeholder={book.price}
+          defaultValue={book.price}
           onChange={(e) => {
             setPrice(e.target.value);
           }}
@@ -50,7 +52,7 @@ const UpdateBook = (book) => {
         <label>Category</label>
         <input
           type="text"
-          placeholder={book.category}
+          defaultValue={book.category}
           onChange={(e) => {
             setCategory(e.target.value);
           }}
@@ -60,7 +62,7 @@ const UpdateBook = (book) => {
         <label>Description</label>
         <input
           type="text"
-          placeholder={book.description}
+          defaultValue={book.description}
           onChange={(e) => {
             setDescription(e.target.value);
           }}
