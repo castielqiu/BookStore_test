@@ -1,10 +1,9 @@
 import Button from "./Button";
-const Header = () => {
-  const onClick = () => {};
+const Header = ({ onAdd, showAdd }) => {
   return (
     <header className="header">
       <h1>Book Store</h1>
-      <Button onClick={onClick} />
+      <Button onClick={onAdd} text={showAdd ? "Close" : "Add"} />
     </header>
   );
 };
